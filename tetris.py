@@ -7,7 +7,9 @@ except ModuleNotFoundError:
     import msvcrt
     def getch():
         try:
-            return msvcrt.getch().decode()
+            inp = msvcrt.getch()
+            if inp == b'\r': return ENTER
+            return inp.decode()
         except UnicodeDecodeError:
             return ''
 import tkinter as tk
@@ -122,7 +124,7 @@ def bottom_msg(args=None):
     if args == '':
         Shapes.msg = ''
     elif args == 'start':
-        Shapes.msg = """Movement: A, S, D or arrow keys \nDrop: Space \nRotation: Q and E\nExit: Enter"""
+        Shapes.msg = """Movement: A, S, D \nDrop: Space \nRotation: Q and E\nExit: Enter"""
     # elif args == 'default':
     #     Shapes.msg = 'Press a button to move:'
     elif args == 'default':
