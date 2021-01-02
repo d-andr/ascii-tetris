@@ -1,7 +1,15 @@
 import random
 from math import ceil
 from time import sleep
-import getch
+try:
+    from getch import getch
+except ModuleNotFoundError:
+    import msvcrt
+    def getch():
+        try:
+            return msvcrt.getch().decode()
+        except UnicodeDecodeError:
+            return ''
 import tkinter as tk
 
 
@@ -569,7 +577,7 @@ def play():
     while True:
         Piece.place_ghost()
         print(print_screen())
-        inp = getch.getch()
+        inp = getch()
         if inp == ENTER:
             break
         Piece.iterate_move(inp) # Check for free space and move if free
@@ -586,7 +594,7 @@ def play():
                 Piece.push_up() # If the piece cannot spawn, push it up
                 bottom_msg('game over')
                 print(print_screen())
-                inp = getch.getch()
+                inp = getch()
                 if inp.lower() == 'r':
                     play()
                 else:
