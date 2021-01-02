@@ -1,1 +1,1 @@
-getch==1.0; playform_system != 'Windows'
+getch==1.0; platform_system != 'Windows'
